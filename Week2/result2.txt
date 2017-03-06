@@ -1,0 +1,840 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  FAILED (0 errors, 14 warnings)
+API:          PASSED
+
+Findbugs:     FAILED (2 warnings)
+Checkstyle:   FAILED (10 warnings)
+
+Correctness:  31/43 tests passed
+Memory:       47/53 tests passed
+Timing:       103/110 tests passed
+
+Aggregate score: 75.85%
+[Compilation: 5%, API: 5%, Findbugs: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+3.5K Mar  6 05:49 Deque.java
+ 685 Mar  6 05:49 Permutation.java
+3.9K Mar  6 05:49 RandomizedQueue.java
+
+
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+
+
+% javac Deque.java
+*-----------------------------------------------------------
+Deque.java:33: warning: [rawtypes] found raw type: Node
+        Node<Item> node = new Node(item);
+                              ^
+  missing type arguments for generic class Node<Item>
+  where Item is a type-variable:
+    Item extends Object declared in class Node
+Deque.java:33: warning: [unchecked] unchecked call to Node(Item) as a member of the raw type Node
+        Node<Item> node = new Node(item);
+                          ^
+  where Item is a type-variable:
+    Item extends Object declared in class Node
+Deque.java:33: warning: [unchecked] unchecked conversion
+        Node<Item> node = new Node(item);
+                          ^
+  required: Node<Item>
+  found:    Node
+  where Item is a type-variable:
+    Item extends Object declared in class Deque
+Deque.java:47: warning: [rawtypes] found raw type: Node
+        Node<Item> node = new Node(item);
+                              ^
+  missing type arguments for generic class Node<Item>
+  where Item is a type-variable:
+    Item extends Object declared in class Node
+Deque.java:47: warning: [unchecked] unchecked call to Node(Item) as a member of the raw type Node
+        Node<Item> node = new Node(item);
+                          ^
+  where Item is a type-variable:
+    Item extends Object declared in class Node
+Deque.java:47: warning: [unchecked] unchecked conversion
+        Node<Item> node = new Node(item);
+                          ^
+  required: Node<Item>
+  found:    Node
+  where Item is a type-variable:
+    Item extends Object declared in class Deque
+Deque.java:56: warning: [unchecked] unchecked conversion
+        Node<Item> node = head.next;
+                              ^
+  required: Node<Item>
+  found:    Node
+  where Item is a type-variable:
+    Item extends Object declared in class Deque
+Deque.java:69: warning: [unchecked] unchecked conversion
+        last = node.prev;
+                   ^
+  required: Node<Item>
+  found:    Node
+  where Item is a type-variable:
+    Item extends Object declared in class Deque
+Deque.java:92: warning: [unchecked] unchecked conversion
+                current = current.next;
+                                 ^
+  required: Node<Item>
+  found:    Node
+  where Item is a type-variable:
+    Item extends Object declared in class Deque
+Deque.java:124: warning: [rawtypes] found raw type: Node
+        Node next;
+        ^
+  missing type arguments for generic class Node<Item>
+  where Item is a type-variable:
+    Item extends Object declared in class Node
+10 warnings
+
+% javac RandomizedQueue.java
+*-----------------------------------------------------------
+RandomizedQueue.java:19: warning: [unchecked] unchecked cast
+        mItems = (Item[]) new Object[2];
+                          ^
+  required: Item[]
+  found:    Object[]
+  where Item is a type-variable:
+    Item extends Object declared in class RandomizedQueue
+RandomizedQueue.java:79: warning: [unchecked] unchecked cast
+            Item[] items = (Item[]) new Object[2*mItems.length];
+                                    ^
+  required: Item[]
+  found:    Object[]
+  where Item is a type-variable:
+    Item extends Object declared in class RandomizedQueue
+RandomizedQueue.java:86: warning: [unchecked] unchecked cast
+            Item[] items = (Item[]) new Object[newSize];
+                                    ^
+  required: Item[]
+  found:    Object[]
+  where Item is a type-variable:
+    Item extends Object declared in class RandomizedQueue
+RandomizedQueue.java:104: warning: [unchecked] unchecked cast
+            mTheItems = (Item[]) new Object[length];
+                                 ^
+  required: Item[]
+  found:    Object[]
+  where Item is a type-variable:
+    Item extends Object declared in class RandomIterator
+4 warnings
+
+% javac Permutation.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+Deque:
+
+RandomizedQueue:
+
+Permutation:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+
+
+% findbugs *.class
+*-----------------------------------------------------------
+M B IT_NO_SUCH_ELEMENT It: The 'next()' method must throw a 'java.util.NoSuchElementException' if it is called when there are no more elements to return.  At Deque.java:[lines 92-93]
+M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'doubles' but that value is never used.  At Deque.java:[line 131]
+Warnings generated: 2
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+Deque.java:123:9: Declare instance variables after static variables but before constructors and methods. [DeclarationOrder]
+Deque.java:123:14: The instance (or static) variable 'data' must be private. [VisibilityModifier]
+Deque.java:124:9: Declare instance variables after static variables but before constructors and methods. [DeclarationOrder]
+Deque.java:124:14: The instance (or static) variable 'next' must be private. [VisibilityModifier]
+Deque.java:125:9: Declare instance variables after static variables but before constructors and methods. [DeclarationOrder]
+Deque.java:125:14: The instance (or static) variable 'prev' must be private. [VisibilityModifier]
+RandomizedQueue.java:6: Do not use static imports. [AvoidStaticImport]
+RandomizedQueue.java:6:15: Unused import statement for 'edu.princeton.cs.algs4.StdRandom.uniform'. [UnusedImports]
+RandomizedQueue.java:77:18: The method 'check_n_copy' must start with a lowercase letter and use camelCase. [MethodName]
+Permutation.java:3:8: Unused import statement for 'edu.princeton.cs.algs4.StdIn'. [UnusedImports]
+Checkstyle ends with 10 errors.
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of Deque
+*-----------------------------------------------------------
+Running 16 total tests.
+
+Tests 1-6 make random calls to addFirst(), addLast(), removeFirst(),
+removeLast(), isEmpty(), and size(). The probabilities of each
+operation are (p1, p2, p3, p4, p5, p6), respectively.
+
+Test 1: Calls to addFirst(), addLast(), and size()
+  *    5 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+  *   50 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+  *  500 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+  * 1000 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+==> passed
+
+Test 2: Calls to addFirst(), removeFirst(), and isEmpty()
+  *    5 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+  *   50 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+  *  500 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+  * 1000 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+  *    5 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+  *   50 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+  *  500 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+  * 1000 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+==> passed
+
+Test 3: Calls to addFirst(), removeLast(), and isEmpty()
+  *    5 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+  *   50 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+  *  500 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+  * 1000 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+  *    5 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+  *   50 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+  *  500 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+  * 1000 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+==> passed
+
+Test 4: Calls to addLast(), removeLast(), and isEmpty()
+  *    5 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+  *   50 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+  *  500 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+  * 1000 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+  *    5 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+  *   50 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+  *  500 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+  * 1000 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+==> passed
+
+Test 5: Calls to addLast(), removeFirst(), and isEmpty()
+  *    5 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+  *   50 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+  *  500 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+  * 1000 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+  *    5 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+  *   50 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+    java.lang.NullPointerException
+
+    Deque.removeFirst(Deque.java:57)
+    TestDeque.random(TestDeque.java:69)
+    TestDeque.test5(TestDeque.java:217)
+    TestDeque.main(TestDeque.java:743)
+
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.addLast(1)
+         deque.removeFirst()     ==> 1
+         deque.addLast(3)
+         deque.removeFirst()
+  *  500 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+    java.lang.NullPointerException
+
+    Deque.removeFirst(Deque.java:57)
+    TestDeque.random(TestDeque.java:69)
+    TestDeque.test5(TestDeque.java:218)
+    TestDeque.main(TestDeque.java:743)
+
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.removeFirst()     ==> 0
+         deque.isEmpty()
+         deque.addLast(3)
+         deque.removeFirst()
+  * 1000 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+    java.lang.NullPointerException
+
+    Deque.removeFirst(Deque.java:57)
+    TestDeque.random(TestDeque.java:69)
+    TestDeque.test5(TestDeque.java:219)
+    TestDeque.main(TestDeque.java:743)
+
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.removeFirst()     ==> 0
+         deque.isEmpty()
+         deque.addLast(3)
+         deque.removeFirst()
+==> FAILED
+
+Test 6: Calls to addFirst(), addLast(), removeFirst(),
+        removeLast(), isEmpty(), and size().
+  *    5 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+  *   50 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+  *  500 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+  * 1000 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+  *    5 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+  *   50 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+    java.lang.NullPointerException
+
+    Deque.removeFirst(Deque.java:57)
+    TestDeque.random(TestDeque.java:69)
+    TestDeque.test6(TestDeque.java:235)
+    TestDeque.main(TestDeque.java:744)
+
+  *  500 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+    java.lang.NullPointerException
+
+    Deque.removeFirst(Deque.java:57)
+    TestDeque.random(TestDeque.java:69)
+    TestDeque.test6(TestDeque.java:236)
+    TestDeque.main(TestDeque.java:744)
+
+  * 1000 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+    java.lang.NullPointerException
+
+    Deque.removeFirst(Deque.java:57)
+    TestDeque.random(TestDeque.java:69)
+    TestDeque.test6(TestDeque.java:237)
+    TestDeque.main(TestDeque.java:744)
+
+    - sequence of dequeue operations was:
+         deque.size()
+         deque.isEmpty()
+         deque.addFirst(2)
+         deque.removeFirst()     ==> 2
+         deque.isEmpty()
+         deque.addLast(5)
+         deque.addLast(6)
+         deque.removeFirst()
+==> FAILED
+
+Test 7: Removing from an empty deque
+  * removeFirst()
+  * removeLast()
+==> passed
+
+Test 8: Create multiple deque objects at the same time
+==> passed
+
+Test 9: Check iterator() after calls only to addFirst()
+==> passed
+
+Test 10: Check iterator() after intermixed calls to addFirst(), addLast(),
+         removeFirst(), and removeLast()
+==> passed
+
+Test 11: Create two nested iterators to same deque
+  * n = 10
+  * n = 1000
+==> passed
+
+Test 12: Create two parallel iterators to same deque
+  * n = 10
+  * n = 1000
+==> passed
+
+Test 13: Create Deque objects of different parameterized types
+==> passed
+
+Test 14: Check that addFirst() and addLast() each throw a NullPointerException
+         when inserting null items
+==> passed
+
+Test 15: Check that remove() and next() throw the specified exceptions in iterator()
+    - java.util.NoSuchElementException not thrown for next()
+==> FAILED
+
+Test 16: Check iterator() when Deque is empty
+==> passed
+
+
+Total: 13/16 tests passed!
+
+
+================================================================
+Testing correctness of RandomizedQueue
+*-----------------------------------------------------------
+Running 18 total tests.
+
+Tests 1-4 make random calls to enqueue(), dequeue(), sample(),
+isEmpty(), and size(). The probabilities of each operation are
+(p1, p2, p3, p4, p5), respectively.
+
+Test 1: check random calls to enqueue() and size()
+  *    5 random calls (0.8, 0.0, 0.0, 0.0, 0.2)
+  *   50 random calls (0.8, 0.0, 0.0, 0.0, 0.2)
+  *  500 random calls (0.8, 0.0, 0.0, 0.0, 0.2)
+  * 1000 random calls (0.8, 0.0, 0.0, 0.0, 0.2)
+==> passed
+
+Test 2: check random calls to enqueue() and dequeue()
+  *    5 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
+  *   50 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
+  *  500 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
+  * 1000 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
+  *    5 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
+  *   50 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
+  *  500 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
+  * 1000 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
+==> passed
+
+Test 3: check random calls to enqueue(), sample(), and size()
+  *    5 random calls (0.8, 0.0, 0.1, 0.0, 0.1)
+  *   50 random calls (0.8, 0.0, 0.1, 0.0, 0.1)
+  *  500 random calls (0.8, 0.0, 0.1, 0.0, 0.1)
+  * 1000 random calls (0.8, 0.0, 0.1, 0.0, 0.1)
+  *    5 random calls (0.1, 0.0, 0.8, 0.0, 0.1)
+  *   50 random calls (0.1, 0.0, 0.8, 0.0, 0.1)
+  *  500 random calls (0.1, 0.0, 0.8, 0.0, 0.1)
+  * 1000 random calls (0.1, 0.0, 0.8, 0.0, 0.1)
+==> passed
+
+Test 4: check random calls to enqueue(), dequeue(), sample(), isEmpty(), and size()
+  *    5 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
+  *   50 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
+  *  500 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
+  * 1000 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
+  *    5 random calls (0.1, 0.1, 0.6, 0.1, 0.1)
+  *   50 random calls (0.1, 0.1, 0.6, 0.1, 0.1)
+  *  500 random calls (0.1, 0.1, 0.6, 0.1, 0.1)
+  * 1000 random calls (0.1, 0.1, 0.6, 0.1, 0.1)
+==> passed
+
+Test 5: call dequeue() and sample() from an empty randomized queue
+  * dequeue()
+  * sample()
+==> passed
+
+Test 6: create multiple randomized queue objects at the same time
+==> passed
+
+Test 7: check that iterator() returns correct items after a sequence of
+        enqueue() operations
+==> passed
+
+Test 8: check that iterator() returns correct items after sequence of enqueue()
+        and dequeue() operations
+==> passed
+
+Test 9: create two nested iterators over the same randomized queue
+  * n = 10
+  * n = 1000
+==> passed
+
+Test 10: create two parallel iterators over the same randomized queue
+  * n = 10
+  * n = 1000
+==> passed
+
+Test 11: create two iterators over different randomized queues
+==> passed
+
+Test 12: create RandomizedQueue objects of different parameterized types
+==> passed
+
+Test 13: check randomness of sample() by enqueueing n items, repeatedly calling
+         sample(), and counting the frequency of each item
+  * n = 3, trials = 12000
+  * n = 5, trials = 12000
+  * n = 8, trials = 12000
+  * n = 10, trials = 12000
+==> passed
+
+Test 14: check randomness of dequeue() by enqueueing n items, dequeueing n items,
+         and seeing whether each of the n! permutations is equally likely
+  * n = 2, trials = 12000
+  * n = 3, trials = 12000
+  * n = 4, trials = 12000
+  * n = 5, trials = 12000
+==> passed
+
+Test 15: check randomness of iterator() by enqueueing n items, iterating over those
+         n items, and seeing whether each of the n! permutations is equally likely
+  * n = 2, trials = 12000
+  * n = 3, trials = 12000
+  * n = 4, trials = 12000
+  * n = 5, trials = 12000
+==> passed
+
+Test 16: check that NullPointerException is thrown when inserting null items
+==> passed
+
+Test 17: check that remove() and next() throw the specified exceptions in iterator()
+==> passed
+
+Test 18: check iterator() when RandomizedQueue is empty
+==> passed
+
+
+Total: 18/18 tests passed!
+
+
+================================================================
+********************************************************************************
+*  TESTING CORRECTNESS (substituting reference RandomizedQueue and Deque)
+********************************************************************************
+
+Testing correctness of Permutation
+*-----------------------------------------------------------
+Tests 1-5 call the main() function directly, resetting standard input
+before each call.
+
+Running 9 total tests.
+
+Test 1a: check formatting for sample inputs from assignment specification
+  % java Permutation 3 < distinct.txt
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    TestPermutation.checkFormatting(TestPermutation.java:28)
+    TestPermutation.test1a(TestPermutation.java:194)
+    TestPermutation.main(TestPermutation.java:298)
+
+    - student solution threw an exception
+    - reference solution did not throw an exception
+
+  % java Permutation 3 < distinct.txt
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    TestPermutation.checkFormatting(TestPermutation.java:28)
+    TestPermutation.test1a(TestPermutation.java:195)
+    TestPermutation.main(TestPermutation.java:298)
+
+    - student solution threw an exception
+    - reference solution did not throw an exception
+
+  % java Permutation 8 < duplicates.txt
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    TestPermutation.checkFormatting(TestPermutation.java:28)
+    TestPermutation.test1a(TestPermutation.java:196)
+    TestPermutation.main(TestPermutation.java:298)
+
+    - student solution threw an exception
+    - reference solution did not throw an exception
+
+==> FAILED
+
+Test 1b: check formatting for other inputs
+  % java Permutation 8 < mediumTale.txt
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    TestPermutation.checkFormatting(TestPermutation.java:28)
+    TestPermutation.test1b(TestPermutation.java:202)
+    TestPermutation.main(TestPermutation.java:299)
+
+    - student solution threw an exception
+    - reference solution did not throw an exception
+
+  % java Permutation 0 < distinct.txt
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    TestPermutation.checkFormatting(TestPermutation.java:28)
+    TestPermutation.test1b(TestPermutation.java:203)
+    TestPermutation.main(TestPermutation.java:299)
+
+    - student solution threw an exception
+    - reference solution did not throw an exception
+
+==> FAILED
+
+Test 2: check that main() reads all data from standard input
+  * filename = distinct.txt, k = 3
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    UtilCOS.consumesStdIn(UtilCOS.java:164)
+    TestPermutation.checkConsumesStdIn(TestPermutation.java:40)
+    TestPermutation.test2(TestPermutation.java:209)
+    TestPermutation.main(TestPermutation.java:300)
+
+  * filename = distinct.txt, k = 3
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    UtilCOS.consumesStdIn(UtilCOS.java:164)
+    TestPermutation.checkConsumesStdIn(TestPermutation.java:40)
+    TestPermutation.test2(TestPermutation.java:210)
+    TestPermutation.main(TestPermutation.java:300)
+
+  * filename = duplicates.txt, k = 8
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    UtilCOS.consumesStdIn(UtilCOS.java:164)
+    TestPermutation.checkConsumesStdIn(TestPermutation.java:40)
+    TestPermutation.test2(TestPermutation.java:211)
+    TestPermutation.main(TestPermutation.java:300)
+
+  * filename = mediumTale.txt, k = 8
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    UtilCOS.consumesStdIn(UtilCOS.java:164)
+    TestPermutation.checkConsumesStdIn(TestPermutation.java:40)
+    TestPermutation.test2(TestPermutation.java:212)
+    TestPermutation.main(TestPermutation.java:300)
+
+==> FAILED
+
+Test 3a: check that main() prints each item from the sequence at most once
+         (for inputs with no duplicate strings)
+  * filename = distinct.txt, k = 3
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3a(TestPermutation.java:220)
+    TestPermutation.main(TestPermutation.java:301)
+
+  * filename = distinct.txt, k = 1
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3a(TestPermutation.java:221)
+    TestPermutation.main(TestPermutation.java:301)
+
+  * filename = distinct.txt, k = 9
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3a(TestPermutation.java:222)
+    TestPermutation.main(TestPermutation.java:301)
+
+  * filename = permutation6.txt, k = 6
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3a(TestPermutation.java:223)
+    TestPermutation.main(TestPermutation.java:301)
+
+  * filename = permutation10.txt, k = 10
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3a(TestPermutation.java:224)
+    TestPermutation.main(TestPermutation.java:301)
+
+==> FAILED
+
+Test 3b: check that main() prints each item from the sequence at most once
+         (for inputs with duplicate strings)
+  * filename = duplicates.txt, k = 8
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:232)
+    TestPermutation.main(TestPermutation.java:302)
+
+  * filename = duplicates.txt, k = 3
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:233)
+    TestPermutation.main(TestPermutation.java:302)
+
+  * filename = permutation8.txt, k = 6
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:234)
+    TestPermutation.main(TestPermutation.java:302)
+
+  * filename = permutation8.txt, k = 2
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:235)
+    TestPermutation.main(TestPermutation.java:302)
+
+  * filename = tinyTale.txt, k = 10
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:236)
+    TestPermutation.main(TestPermutation.java:302)
+
+==> FAILED
+
+Test 3c: check that main() prints each item from the sequence at most once
+         (for inputs with newlines)
+  * filename = mediumTale.txt, k = 10
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3c(TestPermutation.java:244)
+    TestPermutation.main(TestPermutation.java:303)
+
+  * filename = mediumTale.txt, k = 20
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3c(TestPermutation.java:245)
+    TestPermutation.main(TestPermutation.java:303)
+
+  * filename = tale.txt, k = 10
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3c(TestPermutation.java:247)
+    TestPermutation.main(TestPermutation.java:303)
+
+  * filename = tale.txt, k = 50
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3c(TestPermutation.java:248)
+    TestPermutation.main(TestPermutation.java:303)
+
+==> FAILED
+
+Test 4: check main() when k = 0
+  * filename = distinct.txt, k = 0
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test4(TestPermutation.java:255)
+    TestPermutation.main(TestPermutation.java:304)
+
+  * filename = distinct.txt, k = 0
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test4(TestPermutation.java:256)
+    TestPermutation.main(TestPermutation.java:304)
+
+==> FAILED
+
+Test 5a: check that permutations are uniformly random
+         (for inputs with no duplicate strings)
+  * filename = permutation4.txt, k = 1
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5a(TestPermutation.java:266)
+    TestPermutation.main(TestPermutation.java:305)
+
+  * filename = permutation4.txt, k = 2
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5a(TestPermutation.java:267)
+    TestPermutation.main(TestPermutation.java:305)
+
+  * filename = permutation4.txt, k = 3
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5a(TestPermutation.java:268)
+    TestPermutation.main(TestPermutation.java:305)
+
+  * filename = permutation4.txt, k = 4
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5a(TestPermutation.java:269)
+    TestPermutation.main(TestPermutation.java:305)
+
+  * filename = permutation6.txt, k = 2
+    java.lang.ArrayIndexOutOfBoundsException: 1
+
+    Permutation.main(Permutation.java:12)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnes
+
+...
+
+WARNING: the grading output was truncated due to excessive length.
+Typically, this is because you have a method that has an unanticipated side effect
+(such as printing to standard output or throwing an exception). A large amount of output
+can also arise from failing many tests.
